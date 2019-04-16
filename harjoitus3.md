@@ -2,15 +2,19 @@
 
 Lähdin tekemään harjoitustehtäväkokonaisuutta ensin kokeilemalla, saanko yhteyden Masterilla Orjiin. Kokeilin seuraavia komentoja:
 
+```
 sudo salt '*' cmd.run 'hostname -I'
 
 sudo salt '*' cmd.run 'whoami'
+```
 
 Esiin putkahtivat orjien IP-osoitteet sekä tieto, että Master on Root. Kaikki siis alustavasti toimi niinkuin pitikin.
 
 Olin jo aikaisemmin luonut itselleni tilin github.com:in, joten lähdin kokeilemaan pääsisinkö sinne sisälle Linuxini kautta. Asensin gitin komennolla:
 
+```
 sudo apt-get install -y git
+```
 
 Seuraavaksi etenin kurssimateriaalien mukaan (http://terokarvinen.com/2016/publish-your-project-with-github), jossa käskettiin syöttämään tiedoton käyttäjän emailista ja käyttäjän nimestä seuraavilla komennoilla:
 
