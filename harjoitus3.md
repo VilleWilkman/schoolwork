@@ -1,3 +1,7 @@
+# Harjoitustehtävä 3
+
+## C) Näytä omalla salt-varastollasi esimerkit komennoista ”git log”, ”git diff”, ”git blame”. Selitä tulokset.
+
 ### Gitin asennus ja valmistelu. 
 
 Lähdin tekemään harjoitustehtäväkokonaisuutta ensin kokeilemalla, saanko yhteyden Masterilla Orjiin. Kokeilin seuraavia komentoja:
@@ -43,3 +47,7 @@ git add . && git commit; git pull && git push
 ```
 
 Annoin muokkaukselleni nimen (tässä tapauksessa uuden tieston luonti) "Just modified" ja syötin käyttäjänimeni sekä salasanani ja sinnehän tuo tiedosto ponnahti.
+
+
+
+
