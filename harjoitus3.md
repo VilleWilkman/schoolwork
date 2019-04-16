@@ -1,6 +1,7 @@
 # Harjoitustehtävä 3
 
 ## C) Näytä omalla salt-varastollasi esimerkit komennoista ”git log”, ”git diff”, ”git blame”. Selitä tulokset.
+## E) Tee uusi salt-tila (tehty cowsay-tila)
 
 ### Gitin asennus ja valmistelu. 
 
@@ -69,3 +70,33 @@ chown -R youruser:yourgroup .git/
 Linkki vielä: https://stackoverflow.com/questions/13195814/trying-to-git-pull-with-error-cannot-open-git-fetch-head-permission-denied
 
 Tämän jälkeen synkronointi gitin kanssa onnistui! Tosin, en ole aivan varma mitä tein, mutta teinpähän kuitenkin, koska testiympäristössä ollaan.
+
+Seuraavaksi loin "cowsay.sls" -tiedoston komennolla ```sudo nano cowsay.sls``` tuohon "saltstates" -kansioon, joka on synkrossa gitin kanssa. Tiedostoon kirjoitin seuraavan rimpsun (huom. muista YAML):
+```
+install_cowsay:
+  pkg.installed:
+    - pkgs:
+      - cowsay
+```
+      
+Sitten suoritin komennon ```sudo salt '*' state.apply.cowsay```, ja yllätys, komento ei mennyt läpi. Tuli ilmoitus " No matching sls found for 'cowsay' in env 'base'". Tilanne kuitenkin raukesi siirtymällä hakemistoon "/etc/salt" ja konfiguroimalla "master" -filua seuraavasti:
+```
+file_roots:
+  base:
+    - /srv/salt
+    - /srv/salt/saltstates
+```
+Tämän jälkeen vielä uudelleenkäynnistys Masterille, koska Masterin filua konfiguroitiin. Komento ```sudo systemctl restart salt-master.service ``` käynnistää Salt-masterin uudestaan ja kylläpä lähti cowsay liikkeelle tilan käynnistyskomennolla.
+
+
+### Vastaukset vielä aiemmin mainittuihin komentoihin
+
+```git log``` - komento (suorita reposity kansiossa eli tässä tapauksessa saltstates) tuo esiin kaikki muutokset mitä git-kansioissa oleviin tiedostoihin eli tässä tapauksessa vaikka juuri tuo "saltstates" -kansio. Komento kertoo: kuka on muokannut, mitä tiedostoa ja million sekä onko jätetty kommenttia.
+
+```git diff``` - komento (reposityssä...) näyttää mitä on viimeksi muokattu jossain tiedostossa.
+
+```git blame tiedostonnimi``` -komento näyttää kellon ajan milloin jotain tiettyä riviä on muokattu tiedostossa.
+
+## D) Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ```git reset --hard ```. Huomaa, että tässä toiminnossa ei ole peruutusnappia.
+
+Loin teksti.md -tiedoston, johon kirjoitin höpöjä ja tallensin sen. Sen jälkeen avasin tiedoston uudestaan ja poistin puolet kirjoittamistani asioista. Sitten suoritin komennon ```git reset --hard``` ja avasin tiedoston uudestaan ja jostain syystä teksti EI ollut palautunut ennalleen??
