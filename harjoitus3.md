@@ -50,4 +50,22 @@ Annoin muokkaukselleni nimen (tässä tapauksessa uuden tieston luonti) "Just mo
 
 
 
+### Sitten itse varsinaiseen tehtävään eli saltilla luomaan tila, jolla annetaan komentoja
 
+Loin github.com:in uuden kansion nimellä "saltstates". Seuraavaksi siirryin Linuxillani "/srv/salt" -hakemistoon, johon halusin linkittää tuon luomani "saltstates" -kansion. Tein seuraavat komennot siis "/srv/salt" -hakemistossa:
+
+```
+git config --global user.email 'omaemail'
+
+git config --global user.name 'omakäyttäjänimi'
+```
+
+Ja näin sain näkyviin "saltstates" -kansioni.
+
+Tämän jälkeen loin kyseiseen kansioon tiedoston "testitila.md" ja yritin työntää sitä gittiin, mutta oikeudet eivät riittäneet edes sudo:lla. Ratkaisin ongelman antamalla oikeudet itselleni seuraavalla komennolla:
+```
+chown -R youruser:yourgroup .git/
+```
+Linkki vielä: https://stackoverflow.com/questions/13195814/trying-to-git-pull-with-error-cannot-open-git-fetch-head-permission-denied
+
+Tämän jälkeen synkronointi gitin kanssa onnistui! Tosin, en ole aivan varma mitä tein, mutta teinpähän kuitenkin, koska testiympäristössä ollaan.
